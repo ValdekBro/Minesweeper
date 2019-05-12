@@ -1,0 +1,43 @@
+@layout('layouts.main')
+
+@section('css')
+{{ style('style') }}
+{{ style('forms') }}
+@endsection
+
+@section('content')
+  
+
+  <div class="box auth">
+        <h1>Join now</h1>
+        <form action="{{ route('CreateUser') }}" method="POST">
+        {{ csrfField() }}
+
+        <label for="username">Username</label>
+        <input type="text" name="username" value="{{ old('username', '') }}">
+        @if(hasErrorFor('username'))
+            <span class="message">
+                {{ getErrorFor('username') }}
+            </span>
+        @endif
+
+        <label for="email">Email</label>
+        <input type="email" name="email" value="{{ old('email', '') }}">
+        @if(hasErrorFor('email'))
+            <span class="message">
+                {{ getErrorFor('email') }}
+            </span>
+        @endif
+
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        @if(hasErrorFor('password'))
+            <span class="message">
+                {{ getErrorFor('password') }}
+            </span>
+        @endif
+
+        <button type="submit">Join now</button>
+      </form>
+  </div>
+@endsection

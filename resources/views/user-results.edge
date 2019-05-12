@@ -1,0 +1,63 @@
+@layout('layouts.main')
+
+@section('css')
+{{ style('forms') }}
+{{ style('style') }}
+@endsection
+
+@section('scripts')
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script> 
+
+    <script>
+        function getScores(diff) {
+            var request = $.ajax({
+                url: '/ajax/scores',
+                method: "GET",
+                data: { difficulty : diff, user : true },
+                datatype: "json"
+            })
+            .done(function (data, textStatus, jqXHR) {
+                $('tbody').empty();
+
+                let scores = data['scores'].slice(0, 10);
+                scores.forEach(element => {
+                    $('tbody').append("<tr> <td> "+ 
+                        element.time +" </td> <td> "+
+                        element.prop +" </td></tr>")
+                });
+            })
+            .fail(function() { console.log("Getting scores is failed"); });
+        }
+
+    </script>
+
+@endsection
+
+@section('content')
+<div  id="scoreTable" class="post"><h1>Your results</h1>
+    <div class="buttons" ALIGN="CENTER">
+        <button onclick="getScores('Easy')">Easy</button>
+        <button onclick="getScores('Normal')">Normal</button>
+        <button onclick="getScores('Hard')">Hard</button>
+    </div>    
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Properties</th>
+            </tr>
+        </thead>
+        <tbody>
+            @each(score in scores)
+
+                <tr>
+                    <td> {{ score.time }} </td>
+                    <td> {{ score.difficulty }}, {{ score.prop }} </td>
+                </tr>
+
+            @endeach
+        </tbody>
+    </table>
+</div>
+@endsection

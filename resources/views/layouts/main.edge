@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {{ style('style')}}
+    @!section('css')
+
+    <title>MineSweeper</title>
+</head>
+<body>
+    <header>
+        <div class="menubar">
+            <nav>
+                <ul>
+                    <li><a href="/">Game</a></li>
+                    <li><a href="/scores">Top</a></li>
+                    @loggedIn
+                    <li class="right"><a href="/user_score">My results</a></li>
+                    <li class="right"><a href="/logout">Logout</a></li>
+                    @else
+                    <li class="right"><a href="/login">Login</a></li>
+                    <li class="right"><a href="/signup">Signup</a></li>
+                    @endloggedIn
+                </ul>
+            <nav>
+        </div>
+    </header>
+
+
+    @if(flashMessage('message'))
+        <span id="message" class="message big-message">{{ flashMessage('message') }}</span>
+    @endif
+    <script>
+            function func() {
+                document.getElementById("message").style.display = "none";
+            }
+            setTimeout(func, 8000);
+    </script>
+    
+
+    <div class="container" id="content">
+        @!section('content')
+    </div>
+
+
+    <footer>
+        @!section('footer')
+    </footer>
+
+    @!section('scripts')
+</body>
+</html>

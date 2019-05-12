@@ -1,0 +1,56 @@
+@layout('layouts.main')
+
+@section('css')
+
+    {{ style('forms') }}
+    {{ style('style') }}
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    
+@endsection
+
+@section('scripts')
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    {{ script('Minesweeper2.js') }}
+
+    <script>
+
+    </script>
+
+@endsection
+
+
+@section('content')
+    @loggedIn
+    <h3 id="csrf" style="display : none">{{ csrfToken }}</h1>
+    <h1> 
+        <div class="panel">
+            <div id="title">MINESWEEPER</div>  
+            <div id="timer">00:00:00</div>  
+            <div id="mines-left"></div>
+            <div class="buttons">
+              <button class="fa fa-play g" onclick="startGame()"></button>
+              <button class="fa fa-search b" onclick="showCells()"></button>
+            </div>
+            <div id="isProp"><input id="propCheck" type="checkbox"> Without guessing</div>
+            <div class="boxx">
+                <select id="difficulties">
+                    <option>Easy</option>
+                    <option>Normal</option>
+                    <option>Hard</option>
+                </select>
+            </div>
+        </div>
+    </h1>
+    <div id="boardholder">
+        <div oncontextmenu="return false" id="board"></div>
+    </div>
+    @else
+    <h1 ALIGN="CENTER">Logg-In to start a game</h1>
+    @endloggedIn
+    
+@endsection
