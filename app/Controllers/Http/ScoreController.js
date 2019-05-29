@@ -51,10 +51,10 @@ class ScoreController {
     }
 
 
-        async userScore({view, auth}) {
-            let scores = await auth.user.scores().fetch();
+    async userScore({view, auth}) {
+        let scores = await auth.user.scores().fetch();
 
-            function compare(a, b) { 
+        function compare(a, b) { 
             if (Number(a.time) < Number(b.time)) 
             return -1; 
             if (Number(a.time) > Number(b.time)) 

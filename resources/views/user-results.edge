@@ -24,7 +24,7 @@
                 scores.forEach(element => {
                     $('tbody').append("<tr> <td> "+ 
                         element.time +" </td> <td> "+
-                        element.prop +" </td></tr>")
+                        element.prop +" </td> </tr>")
                 });
             })
             .fail(function() { console.log("Getting scores is failed"); });

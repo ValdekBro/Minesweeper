@@ -6,6 +6,8 @@ const Score = use('App/Models/Score');
 
 
 Route.on    ('/').render('index')
+Route.on    ('/info').render('info')
+Route.on   ('/scores').render('best-players');
 
 Route.on    ('/signup').render('auth.signup');
 Route.on    ('/login').render('auth.login');
@@ -21,15 +23,6 @@ Route.post  ('/login', 'UserController.login')
 Route.get   ('/logout', 'UserController.logout');
 
 Route.get   ('/user_score', 'ScoreController.userScore');
-
-Route.on   ('/scores').render('best-players');
-// Route.post  ('/user_score', 'ScoreController.create')
-//     .validator('CreateDcore')
-//     .as('CreateScore');
-
-// Route.get   ('/user_score/delete/:id', 'ScoreController.delete');
-// Route.get   ('/score/update/:id', 'ScoreController.updateView');
-// Route.post  ('/score/update/:id', 'ScoreController.update');
 
 Route.post   ('/ajax/add_score', 'ScoreController.create');
 Route.get    ('/ajax/scores', 'ScoreController.getScores'); 

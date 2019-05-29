@@ -5,9 +5,8 @@ const User = use('App/Models/User');
 class UserController {
     async create({ request, auth, response}) {
         const user = await User.create(request.only(['username','email','password']));
-        console.log(user);
 
-        console.log(await auth.login(user));
+    await auth.login(user);
         return response.redirect('/');
     }
 
@@ -23,7 +22,7 @@ class UserController {
     }
 
     async logout({ auth, response }) {
-        console.log(await auth.logout());
+        await auth.logout();
         return response.redirect('/');
     }
 }
